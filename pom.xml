@@ -6,7 +6,7 @@
 
     <groupId>pl.timsixth</groupId>
     <artifactId>T-TheTag</artifactId>
-    <version>1.7.0</version>
+    <version>1.7.1</version>
 
     <repositories>
         <repository>
