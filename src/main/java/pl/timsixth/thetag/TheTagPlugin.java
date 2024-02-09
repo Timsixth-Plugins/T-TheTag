@@ -113,6 +113,8 @@ public class TheTagPlugin extends MiniGame {
 
         getLoaders().loadAll();
         menuManager.load();
+
+        System.out.println(getInstance());
     }
 
     @Override

@@ -6,7 +6,7 @@
 
     <groupId>pl.timsixth</groupId>
     <artifactId>T-TheTag</artifactId>
-    <version>1.7.1</version>
+    <version>1.8.0</version>
 
     <repositories>
         <repository>
@@ -26,7 +26,8 @@
         <dependency>
             <groupId>com.github.timsixth.MinigameAPI</groupId>
             <artifactId>library</artifactId>
-            <version>v1.0.0</version>
+            <version>v1.1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>
