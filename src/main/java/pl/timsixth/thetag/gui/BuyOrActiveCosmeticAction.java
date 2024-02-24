@@ -5,11 +5,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import pl.timsixth.guilibrary.core.model.MenuItem;
 import pl.timsixth.guilibrary.core.model.action.AbstractAction;
 import pl.timsixth.guilibrary.core.model.action.click.ClickAction;
+import pl.timsixth.minigameapi.api.MiniGame;
 import pl.timsixth.minigameapi.api.coins.UserCoins;
 import pl.timsixth.minigameapi.api.coins.manager.UserCoinsManager;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
 import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
-import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmeticsImpl;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
@@ -78,7 +78,7 @@ public class BuyOrActiveCosmeticAction extends AbstractAction implements ClickAc
         } else {
             if (hasCoins(event, menuItem, player, userCoinsDbModel)) return;
 
-            UserCosmetics userCosmeticsDbModel = new UserCosmeticsImpl(player.getUniqueId());
+            UserCosmetics userCosmeticsDbModel = MiniGame.getUserCosmeticsFactory().createUserCosmetics(player.getUniqueId());
             userCosmeticsDbModel.addCosmetic(cosmetic);
 
             userCosmeticsManager.addUser(userCosmeticsDbModel);

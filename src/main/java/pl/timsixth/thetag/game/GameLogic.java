@@ -13,7 +13,6 @@ import pl.timsixth.minigameapi.api.game.GameManager;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsImpl;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
 import pl.timsixth.thetag.cosmetics.CosmeticCategory;
@@ -67,21 +66,17 @@ public class GameLogic {
             if (myUserGame.isTag()) {
                 myUserGame.setPlaying(false);
                 game.getPlayingUsers().remove(myUserGame);
+
                 Player player = myUserGame.toPlayer();
                 player.teleport(settings.getLobbyLocation());
+
                 PlayerUtil.sendMessage(player, messages.getRemovedTheTagToPlayer());
+
                 player.getInventory().clear();
                 player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
                 player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-                Optional<UserStats> userStatsOptional = statisticsManager.getUser(player.getUniqueId(), game.getArena().getName());
-                UserStats userStats;
-                if (!userStatsOptional.isPresent()) {
-                    userStats = new UserStatsImpl(player.getUniqueId(), player.getName(), game.getArena().getName());
-                    statisticsManager.addNewUser(userStats);
 
-                } else {
-                    userStats = userStatsOptional.get();
-                }
+                UserStats userStats = statisticsManager.getUserStatsOrCreate(player, game.getArena());
                 userStats.addDefeat();
                 showCosmetics(player, null, CosmeticCategory.DEFEAT.name());
                 break;

@@ -12,7 +12,6 @@ import pl.timsixth.minigameapi.api.game.state.GameState;
 import pl.timsixth.minigameapi.api.game.user.UserGame;
 import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.stats.model.UserStats;
-import pl.timsixth.minigameapi.api.stats.model.UserStatsImpl;
 import pl.timsixth.thetag.TheTagPlugin;
 import pl.timsixth.thetag.config.Messages;
 import pl.timsixth.thetag.config.Settings;
@@ -46,15 +45,7 @@ public class WinGameState implements GameState {
             ItemUtil.clearPlayerInventory(player);
             player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
 
-            Optional<UserStats> userStatsOptional = statisticsManager.getUser(player.getUniqueId(), game.getArena().getName());
-            UserStats userStats;
-            if (!userStatsOptional.isPresent()) {
-                userStats = new UserStatsImpl(player.getUniqueId(), player.getName(), game.getArena().getName());
-                statisticsManager.addNewUser(userStats);
-
-            } else {
-                userStats = userStatsOptional.get();
-            }
+            UserStats userStats = statisticsManager.getUserStatsOrCreate(player, game.getArena());
             userStats.addWin();
 
             UserCoinsManager userCoinsManager = theTagPlugin.getUserCoinsManager();
@@ -67,7 +58,7 @@ public class WinGameState implements GameState {
             userCoinsDbModel.addCoins(settings.getCostOfWin());
             gameLogic.showCosmetics(player, null, CosmeticCategory.WIN.name());
 
-            Bukkit.getPluginManager().callEvent(new PlayerWinGameEvent(player, game, (int) settings.getCostOfWin()));
+            Bukkit.getPluginManager().callEvent(new PlayerWinGameEvent(player, game, settings.getCostOfWin()));
         }
 
         theTagPlugin.getGameManager().gameRestart(game);

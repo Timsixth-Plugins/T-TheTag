@@ -25,8 +25,8 @@
     <dependencies>
         <dependency>
             <groupId>com.github.timsixth.MinigameAPI</groupId>
-            <artifactId>library</artifactId>
-            <version>v1.1.0</version>
+            <artifactId>api</artifactId>
+            <version>v1.2.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -68,32 +68,12 @@
                 <version>3.4.1</version>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <relocations>
-                        <relocation>
-                            <pattern>pl.timsixth.gui.libray</pattern>
-                            <shadedPattern>pl.timsixth.thetag.gui.lib</shadedPattern>
-                        </relocation>
-                    </relocations>
                     <filters>
                         <filter>
                             <artifact>com.mysql:*</artifact>
                             <excludes>
                                 <exclude>META-INF/*.MF</exclude>
                             </excludes>
-                        </filter>
-                        <filter>
-                            <artifact>com.github.timsixth:T-GuiApi</artifact>
-                            <includes>
-                                <include>pl/timsixth/gui/libray/listener/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/action/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/action/click/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/action/custom/impl/**.class</include>
-                                <include>pl/timsixth/gui/libray/model/action/custom/**.class</include>
-                                <include>pl/timsixth/gui/libray/manager/**.class</include>
-                                <include>pl/timsixth/gui/libray/manager/registration/**.class</include>
-                                <include>pl/timsixth/gui/libray/util/**.class</include>
-                            </includes>
                         </filter>
                     </filters>
                     <artifactSet>
@@ -102,7 +82,6 @@
                             <exclude>com.mysql:mysql-connector-j</exclude>
                             <exclude>com.github.timsixth:T-DataBasesAPI</exclude>
                             <exclude>org.xerial:sqlite-jdbc</exclude>
-                            <exclude>pl.timsixth:library</exclude>
                             <exclude>org.kohsuke:github-api</exclude>
                             <exclude>com.fasterxml.jackson.core:jackson-annotations</exclude>
                             <exclude>com.fasterxml.jackson.core:jackson-core</exclude>

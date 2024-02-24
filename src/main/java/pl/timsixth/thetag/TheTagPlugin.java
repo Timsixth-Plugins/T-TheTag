@@ -113,8 +113,6 @@ public class TheTagPlugin extends MiniGame {
 
         getLoaders().loadAll();
         menuManager.load();
-
-        System.out.println(getInstance());
     }
 
     @Override
@@ -140,7 +138,6 @@ public class TheTagPlugin extends MiniGame {
                 new PlayerQuitListener(gameLogic),
                 new PlayerKickListener(gameLogic),
                 new FoodLevelChangeListener(getGameManager()),
-                new PlayerJoinListener(getUserCoinsManager()),
                 new PlayerMoveListener(getGameManager(), gameLogic),
                 new PlayerInteractListener(settings, messages, getGameManager())
         };
@@ -151,8 +148,8 @@ public class TheTagPlugin extends MiniGame {
     }
 
     private void registerCommands() {
-        theTagCommand = new TheTagCommand(getDefaultCommandConfiguration(), messages, getArenaManager(), getGameManager(), getUserCoinsManager(), getUserStatsManager(), menuManager, gameLogic);
-        adminTheTagCommand = new AdminTheTagCommand(getDefaultCommandConfiguration(), messages, settings, menuManager, configFile, getArenaManager(), getUserCoinsManager());
+        theTagCommand = new TheTagCommand(getCommandConfiguration(), messages, getArenaManager(), getGameManager(), getUserCoinsManager(), getUserStatsManager(), menuManager, gameLogic);
+        adminTheTagCommand = new AdminTheTagCommand(getCommandConfiguration(), messages, settings, menuManager, configFile, getArenaManager(), getUserCoinsManager());
 
         CommandRegistration commandRegistration = new CommandRegistration(this);
 
