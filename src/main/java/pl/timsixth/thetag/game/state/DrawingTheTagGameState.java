@@ -18,6 +18,7 @@ import pl.timsixth.thetag.model.MyUserGame;
 import pl.timsixth.thetag.util.ItemUtil;
 
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static pl.timsixth.thetag.util.ItemUtil.getHelmet;
 
@@ -34,7 +35,7 @@ public class DrawingTheTagGameState implements GameState {
 
     @Override
     public void run() {
-        MyUserGame myUserGame = gameLogic.randomUser(game);
+        MyUserGame myUserGame = randomUser(game);
 
         myUserGame.setTag(true);
 
@@ -80,6 +81,10 @@ public class DrawingTheTagGameState implements GameState {
         }
 
         game.setState(new PlayingGameState(theTagPlugin, settings, messages, game, scoreboardManager, statisticsManager, gameLogic));
+    }
+
+    private MyUserGame randomUser(Game game) {
+        return (MyUserGame) game.getPlayingUsers().get(ThreadLocalRandom.current().nextInt(game.getPlayingUsers().size()));
     }
 
 }

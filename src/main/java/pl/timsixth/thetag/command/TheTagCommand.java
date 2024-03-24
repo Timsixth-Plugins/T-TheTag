@@ -12,7 +12,6 @@ import pl.timsixth.minigameapi.api.stats.manager.UserStatsManager;
 import pl.timsixth.minigameapi.api.util.ChatUtil;
 import pl.timsixth.thetag.command.subcommand.thetag.*;
 import pl.timsixth.thetag.config.Messages;
-import pl.timsixth.thetag.game.GameLogic;
 import pl.timsixth.thetag.manager.MenuManager;
 import pl.timsixth.thetag.tabcompleter.TheTagCommandTabCompleter;
 import pl.timsixth.thetag.util.PlayerUtil;
@@ -25,14 +24,14 @@ public class TheTagCommand extends ParentCommand {
     public TheTagCommand(CommandConfiguration commandConfiguration,
                          Messages messages, ArenaManager arenaManager, GameManager gameManager,
                          UserCoinsManager userCoinsManager, UserStatsManager userStatsManager,
-                         MenuManager menuManager, GameLogic gameLogic) {
+                         MenuManager menuManager) {
         super("", true, true, false, commandConfiguration);
         this.messages = messages;
         this.arenaManager = arenaManager;
         getSubCommands().add(new ListSubCommand(arenaManager, messages));
         getSubCommands().add(new LeaveSubCommand(gameManager, messages));
         getSubCommands().add(new StatsSubCommand(userCoinsManager, messages, userStatsManager));
-        getSubCommands().add(new RandomJoinSubCommand(gameLogic));
+        getSubCommands().add(new RandomJoinSubCommand(messages, arenaManager, gameManager));
         getSubCommands().add(new CosmeticShopSubCommand(menuManager, messages));
         getSubCommands().add(new JoinSubCommand(arenaManager, gameManager, messages));
     }

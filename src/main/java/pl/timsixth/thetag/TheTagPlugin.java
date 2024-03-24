@@ -67,7 +67,7 @@ public class TheTagPlugin extends MiniGame {
 
         setGameManager(new MyGameManager(settings, this, messages, scoreboardManager, getUserStatsManager(), getUserCosmeticsManager()));
 
-        gameLogic = new GameLogic(getGameManager(), getUserStatsManager(), messages, getArenaManager(), settings, getUserCosmeticsManager());
+        gameLogic = new GameLogic(getGameManager(), getUserStatsManager(), messages, settings, getUserCosmeticsManager());
 
         GUIApi guiApi = new GUIApi(this);
         actionRegistration = guiApi.getActionRegistration();
@@ -146,7 +146,7 @@ public class TheTagPlugin extends MiniGame {
     }
 
     private void registerCommands() {
-        theTagCommand = new TheTagCommand(getCommandConfiguration(), messages, getArenaManager(), getGameManager(), getUserCoinsManager(), getUserStatsManager(), menuManager, gameLogic);
+        theTagCommand = new TheTagCommand(getCommandConfiguration(), messages, getArenaManager(), getGameManager(), getUserCoinsManager(), getUserStatsManager(), menuManager);
         adminTheTagCommand = new AdminTheTagCommand(getCommandConfiguration(), messages, settings, menuManager, configFile, getArenaManager(), getUserCoinsManager());
 
         CommandRegistration commandRegistration = new CommandRegistration(this);

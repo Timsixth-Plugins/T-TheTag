@@ -3,8 +3,6 @@ package pl.timsixth.thetag.game;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
-import pl.timsixth.minigameapi.api.arena.Arena;
-import pl.timsixth.minigameapi.api.arena.manager.ArenaManager;
 import pl.timsixth.minigameapi.api.cosmetics.Cosmetic;
 import pl.timsixth.minigameapi.api.cosmetics.user.UserCosmetics;
 import pl.timsixth.minigameapi.api.cosmetics.user.manager.UserCosmeticsManager;
@@ -21,7 +19,6 @@ import pl.timsixth.thetag.model.MyUserGame;
 import pl.timsixth.thetag.util.PlayerUtil;
 
 import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
 
 @RequiredArgsConstructor
 public class GameLogic {
@@ -29,13 +26,8 @@ public class GameLogic {
     private final GameManager gameManager;
     private final UserStatsManager statisticsManager;
     private final Messages messages;
-    private final ArenaManager arenaManager;
     private final Settings settings;
     private final UserCosmeticsManager userCosmeticsManager;
-
-    public MyUserGame randomUser(Game game) {
-        return (MyUserGame) game.getPlayingUsers().get(ThreadLocalRandom.current().nextInt(game.getPlayingUsers().size()));
-    }
 
     public void leaveFromGame(Player player) {
         Optional<Game> gameOptional = gameManager.getGameByPlayer(player);
@@ -44,19 +36,6 @@ public class GameLogic {
         Game game = gameOptional.get();
 
         gameManager.leaveFromGame(game, player);
-    }
-
-    public void randomJoin(Player player) {
-        String randomName = gameManager.randomGame();
-        if (randomName == null || randomName.isEmpty()) {
-            PlayerUtil.sendMessage(player, messages.getDontHaveAnyEmptyArena());
-            return;
-        }
-
-        Optional<Arena> areaOptional = arenaManager.getArena(randomName);
-        if (!areaOptional.isPresent()) return;
-        Arena arena = areaOptional.get();
-        gameManager.joinGame(arena, player);
     }
 
     public void checkTheTag(Game game) {
