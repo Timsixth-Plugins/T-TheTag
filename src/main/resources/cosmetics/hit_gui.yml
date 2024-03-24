@@ -49,6 +49,17 @@ guis:
         lore:
           - '&7Price &a{PRICE} &7coins'
           - '&7Right click to buy effect'
+      4:
+        material: TOTEM_OF_UNDYING
+        displayname: '&a&lTotem effect'
+        price: 3000
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'HIT_TOTEM'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
       7:
         material: BARRIER
         displayname: '&cReturn to main menu'
