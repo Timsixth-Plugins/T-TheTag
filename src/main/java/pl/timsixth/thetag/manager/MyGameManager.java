@@ -40,7 +40,7 @@ public class MyGameManager extends AbstractGameManager {
         this.scoreboardManager = scoreboardManager;
         this.statisticsManager = statisticsManager;
 
-        gameLogic = new GameLogic(this, statisticsManager, messages, theTagPlugin.getArenaManager(), settings, userCosmeticsManager);
+        gameLogic = new GameLogic(this, statisticsManager, messages, settings, userCosmeticsManager);
     }
 
     @Override
