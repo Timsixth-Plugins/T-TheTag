@@ -95,6 +95,7 @@ public class TheTagPlugin extends MiniGame {
                 new WalkNoteCosmetic(),
                 new WalkDripLavaCosmetic(),
                 new WalkDripWaterCosmetic(),
+                new WalkVillagerCosmetic(),
                 new WalkSnowCosmetic(),
                 new HitHeartCosmetic(),
                 new HitSlimeCosmetic(),

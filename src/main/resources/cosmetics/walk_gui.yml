@@ -71,6 +71,17 @@ guis:
         lore:
           - '&7Price &a{PRICE} &7coins'
           - '&7Right click to buy effect'
+      6:
+        material: EMERALD
+        displayname: '&a&lVillager happy effect'
+        price: 1000
+        click_action:
+          type: 'BUY_OR_ACTIVE_COSMETIC'
+          args:
+            - 'WALK_VILLAGER'
+        lore:
+          - '&7Price &a{PRICE} &7coins'
+          - '&7Right click to buy effect'
       7:
         material: BARRIER
         displayname: '&cReturn to main menu'
