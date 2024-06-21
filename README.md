@@ -5,6 +5,10 @@ Game last as long as in game is two players.
 When in game is two players there is final round which last is 45 seconds.
 You can buy unique cosmetics to enrich game.
 
+Download:
+BuiltByBit: https://builtbybit.com/resources/thetag-new-minigame.29629/
+Spigotmc:  
+
 ### Authors
 - timsixth
 - RokeR (Idea)
